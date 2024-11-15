@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PIANO SEDERHANA</title>
+    <style type="text/css">
+        /* Kontainer untuk piano */
+        .piano {
+            display: flex;
+            position: relative;
+            max-width: 9000px; /* Maksimal 90% dari lebar viewport */
+            height: auto;
+            aspect-ratio: 7 / 2; /* Menjaga rasio lebar dan tinggi agar tetap proporsional */
+            border: 2px solid black;
+            background-color: #eee; /* Warna latar belakang piano */
+        }
+
+        /* Tuts putih */
+        .tuts.white {
+            flex: 1;
+            height: 100%;
+            background-color: white;
+            border: 1px solid black;
+            position: relative;
+        }
+
+        /* Tuts hitam */
+        .tuts.black {
+            width: 8%; /* Lebar tuts hitam agar proporsional */
+            height: 60%; /* Sesuaikan tinggi tuts hitam agar lebih kecil */
+            background-color: black;
+            position: absolute;
+            top: 0;
+            z-index: 1;
+            margin-left: -4%; /* Posisi tuts hitam di tengah antara dua tuts putih */
+        }
+
+        /* Posisi spesifik tuts hitam */
+        #do-sharp { left: 12.5%; }
+        #re-sharp { left: 25%; }
+        #fa-sharp { left: 50%; }
+        #sol-sharp { left: 62.3%; }
+        #la-sharp { left: 75%; }
+
+        /* Warna abu-abu untuk tuts yang ditekan */
+        .tuts.white.pressed {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="piano">
+        <div class="tuts white" id="do">
+            <audio id="suaraDo" src="sound/do.wav"></audio>
+        </div>
+
+        <div class="tuts black" id="do-sharp"></div>
+
+        <div class="tuts white" id="re">
+            <audio id="suaraRe" src="sound/re.wav"></audio>
+        </div>
+        <div class="tuts black" id="re-sharp"></div>
+
+        <div class="tuts white" id="mi">
+            <audio id="suaraMi" src="sound/mi.wav"></audio>
+        </div>
+
+        <div class="tuts white" id="fa">
+            <audio id="suaraFa" src="sound/fa.wav"></audio>
+        </div>
+
+        <div class="tuts black" id="fa-sharp"></div>
+
+        <div class="tuts white" id="sol">
+            <audio id="suaraSol" src="sound/sol.wav"></audio>
+        </div>
+
+        <div class="tuts black" id="sol-sharp"></div>
+
+        <div class="tuts white" id="la">
+            <audio id="suaraLa" src="sound/la.wav"></audio>
+        </div>
+
+        <div class="tuts black" id="la-sharp"></div>
+
+        <div class="tuts white" id="si">
+            <audio id="suaraSi" src="sound/si.wav"></audio>
+        </div>
+        <div class="tuts white" id="do-tinggi">
+            <audio id="suaraDo_tinggi" src="sound/do_tinggi.wav"></audio>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const tutsDo = document.getElementById("do");
+        const tutsRe = document.getElementById("re");
+        const tutsMi = document.getElementById("mi");
+        const tutsFa = document.getElementById("fa");
+        const tutsSol = document.getElementById("sol");
+        const tutsLa = document.getElementById("la");
+        const tutsSi = document.getElementById("si");
+        const tutsDoTinggi = document.getElementById("do-tinggi");
+
+        const suaraDo = document.getElementById("suaraDo");
+        const suaraRe = document.getElementById("suaraRe");
+        const suaraMi = document.getElementById("suaraMi");
+        const suaraFa = document.getElementById("suaraFa");
+        const suaraSol = document.getElementById("suaraSol");
+        const suaraLa = document.getElementById("suaraLa");
+        const suaraSi = document.getElementById("suaraSi");
+        const suaraDo_tinggi = document.getElementById("suaraDo_tinggi");
+
+        // Event listener untuk menangkap tombol keyboard
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "1") {
+                tutsDo.classList.add("pressed"); // Tambahkan kelas 'pressed' untuk mengubah warna
+
+                suaraDo.currentTime = 0;
+                suaraDo.play();
+            }
+
+            if (event.key === "2") {
+                tutsRe.classList.add("pressed");
+
+                suaraRe.currentTime = 0;
+                suaraRe.play();
+            }
+
+            if (event.key === "3") {
+                tutsMi.classList.add("pressed");
+
+                suaraMi.currentTime = 0
+                suaraMi.play();
+            }
+
+            if (event.key === "4") {
+                tutsFa.classList.add("pressed");
+
+                suaraFa.currentTime = 0
+                suaraFa.play();
+            }
+
+            if (event.key === "5") {
+                tutsSol.classList.add("pressed");
+
+                suaraSol.currentTime = 0
+                suaraSol.play();
+            }
+
+            if (event.key === "6") {
+                tutsLa.classList.add("pressed");
+
+                suaraLa.currentTime = 0
+                suaraLa.play();
+            }
+
+            if (event.key === "7") {
+                tutsSi.classList.add("pressed");
+
+                suaraSi.currentTime = 0
+                suaraSi.play();
+            }
+
+            if (event.key === "8") {
+                tutsDoTinggi.classList.add("pressed");
+
+                suaraDo_tinggi.currentTime = 0
+                suaraDo_tinggi.play();
+            }
+        });
+
+        // Event listener untuk mengembalikan warna asli saat tombol dilepas
+        document.addEventListener("keyup", function(event) {
+            if (event.key === "1") {
+                tutsDo.classList.remove("pressed"); // Hapus kelas 'pressed' untuk mengembalikan warna
+            }
+            if (event.key === "2") {
+                tutsRe.classList.remove("pressed");
+            }
+            if (event.key === "3") {
+                tutsMi.classList.remove("pressed")
+            }
+            if (event.key === "4") {
+                tutsFa.classList.remove("pressed")
+            }
+            if (event.key === "5") {
+                tutsSol.classList.remove("pressed")
+            }
+            if (event.key === "6") {
+                tutsLa.classList.remove("pressed")
+            }
+            if (event.key === "7") {
+                tutsSi.classList.remove("pressed")
+            }
+            if (event.key === "8") {
+                tutsDoTinggi.classList.remove("pressed")
+            }
+        });
+    </script>
+</body>
+</html>
